@@ -1,21 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Davit
- * Date: 04/04/17
- * Time: 15:56
- */
 
+include $_SERVER['DOCUMENT_ROOT'] . '/jilogit/jilo/db/UserDB.php';
+$userDB = new UserDB();
+$result = $userDB->findAll();
 
-$connection = mysqli_connect('localhost', 'root', '', 'jilo');
-if (!$connection) {
-    die("Database connection failed");
-}
-$query = "select * from users";
-$result = mysqli_query($connection, $query);
-if (!$result) {
-    die("Wasn't able to insert new user with error " . mysqli_error($connection));
-}
 
 ?>
 
@@ -23,12 +11,15 @@ if (!$result) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Users</title>
 </head>
 <body>
 <table>
     <thead>
-    <tr><th>Username</th></tr>
+    <tr>
+        <th>Username</th>
+        <th>Activated</th>
+    </tr>
     </thead>
     <tbody>
 <?php
