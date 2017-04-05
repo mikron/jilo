@@ -5,29 +5,25 @@
  * Date: 04/04/17
  * Time: 11:35
  */
+include $_SERVER['DOCUMENT_ROOT'] . '/jilogit/jilo/db/UserDB.php';
+session_start();
 
 if (isset($_POST['login'])) {
-
-    $users = Array('admin', 'user');
 
     $username = $_POST['username'];
     $password = $_POST['password'];
 
     if ($username && $password) {
-        $connection = mysqli_connect('localhost', 'root', '', 'jilo');
-        if ($connection) {
-            echo "Connection was succesfull!";
+        $userDB = new UserDB();
+        $row = $userDB->findOneByLogin($username)->fetch_assoc();
+        if ($row['password'] === $password) {
+            $_SESSION['USERID'] = $row['id'];
+            header("Location: ../index.php");
         } else {
-            die("Database connection failed");
+            new Exception("Wrong login or password");
         }
     } else {
         echo "Username and password are required!";
-    }
-
-    $query = "INSERT INTO users(login, password) VALUES ('{$username}', '{$password}')";
-    $result = mysqli_query($connection, $query);
-    if (!$result) {
-        die("Wasn't able to insert new user with error " . mysqli_error($connection));
     }
 }
 
@@ -40,7 +36,7 @@ if (isset($_POST['login'])) {
     <title>Login</title>
 </head>
 <body>
-    <form action="login.php" method="post">
+    <form action="Login.php" method="post">
         <input type="text" name="username" placeholder="Username">
         <input type="password" name="password" placeholder="password">
         <input type="submit" name="login">
