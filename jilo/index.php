@@ -1,12 +1,17 @@
 <?php
 session_start();
 
-echo $_SESSION['USERID'];
+echo $_SESSION['LOGGEDIN'];
+
+if (isset($_SESSION['LOGGEDIN']) && $_SESSION['LOGGEDIN'] == true) {
+    header('Location: article/Article.php');
+} else {
+    header('Location: user/Login.php');
+}
 
 ?>
 
-
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -16,4 +21,4 @@ echo $_SESSION['USERID'];
 <body>
 <p>Empty body</p>
 </body>
-</html>
+</html>-->

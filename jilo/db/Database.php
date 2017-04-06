@@ -23,7 +23,7 @@ class Database {
     public function query($query) {
         $result = mysqli_query($this->connection, $query);
         if (mysqli_error($this->connection) != '') {
-            throw new Exception('Database.php connection error: ' . mysqli_connect_error(this::$connection));
+            throw new Exception('Database.php connection error: ' . mysqli_connect_error($this->connection));
         }
         return $result;
     }

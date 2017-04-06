@@ -1,19 +1,11 @@
 <?php
-
 include $_SERVER['DOCUMENT_ROOT'] . '/jilogit/jilo/db/UserDB.php';
 $userDB = new UserDB();
 $result = $userDB->findAll();
 
-
+$title = "Users";
+include $_SERVER['DOCUMENT_ROOT'] . '/jilogit/jilo/layout/Header.php';
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Users</title>
-</head>
-<body>
 <table>
     <thead>
     <tr>
@@ -36,7 +28,4 @@ $result = $userDB->findAll();
 
 </table>
 
-</body>
-
-
-</html>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/jilogit/jilo/layout/Footer.php'; ?>
