@@ -1,5 +1,5 @@
 <?php
-include 'Database.php';
+require_once 'Database.php';
 
 // TODO clear input parameters for SQL Injection
 // TODO encrypt password

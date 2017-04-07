@@ -44,6 +44,7 @@ if (isset($_POST)) {
                 echo "<tr>
                     <td>{$row['title']}</td>
                     <td>{$row['text']}</td>
+                    <td><button class='viewbtn' value='{$row['id']}'>View</button></td>
                     <td><button class='editbtn' value='{$row['id']}'>Edit</button></td>
                     <td><button class='deletebtn' value='{$row['id']}'>Delete</button></td>
                   </tr>";
@@ -54,6 +55,10 @@ if (isset($_POST)) {
 
 <script type="text/javascript">
     $(document).ready(function(){
+        $(".viewbtn").click(function() {
+            window.location = window.location.toString().replace(/article.php/ig, 'ArticleDetails.php?id=' + $(this).attr("value") + '&viewmode=true');
+            console.log('Edit button click ' + $(this).attr("value"));
+        });
         $(".editbtn").click(function() {
             window.location = window.location.toString().replace(/article.php/ig, 'ArticleDetails.php?id=' + $(this).attr("value"));
             console.log('Edit button click ' + $(this).attr("value"));

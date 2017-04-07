@@ -1,5 +1,5 @@
 <?php
-include 'Database.php';
+require_once 'Database.php';
 
 class ArticleDB {
 
