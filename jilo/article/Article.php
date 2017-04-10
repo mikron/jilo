@@ -7,7 +7,7 @@ if (isset($_SESSION['LOGGEDIN']) && $_SESSION['LOGGEDIN'] == true) {
 
 include $_SERVER['DOCUMENT_ROOT'] . '/jilogit/jilo/db/ArticleDB.php';
 $articleDB = new ArticleDB();
-$result = $articleDB->findAll();
+$result = $articleDB->findAll($_SESSION['ROLEADMIN']);
 
 $title = "Article";
 include $_SERVER['DOCUMENT_ROOT'] . '/jilogit/jilo/layout/Header.php';
@@ -45,9 +45,11 @@ if (isset($_POST)) {
                     <td>{$row['title']}</td>
                     <td>{$row['text']}</td>
                     <td><button class='viewbtn' value='{$row['id']}'>View</button></td>
-                    <td><button class='editbtn' value='{$row['id']}'>Edit</button></td>
-                    <td><button class='deletebtn' value='{$row['id']}'>Delete</button></td>
-                  </tr>";
+                    <td><button class='editbtn' value='{$row['id']}'>Edit</button></td>";
+                if (isset($_SESSION['ROLEADMIN']) && $_SESSION['ROLEADMIN'] == true) {
+                    echo " <td><button class='deletebtn' value='{$row['id']}'>Delete</button></td>";
+                }
+                echo "  </tr>";
             }
         ?>
     </tbody>

@@ -23,7 +23,9 @@ class CommentDB {
 
     public function insertComment($articleId, $text, $activated) {
         $query = "INSERT INTO comments(article_id, text, activated) VALUES ($articleId, '{$text}', $activated)";
-        Database::getInstance()->query($query);
+        $mysqli = Database::getInstance();
+        $mysqli->query($query);
+        $this->findOneById(mysqli_insert_id($mysqli->getConnection()));
     }
 
     public function deleteComment($id) {

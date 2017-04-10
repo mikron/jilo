@@ -1,4 +1,5 @@
 <?php
+session_start();
 include $_SERVER['DOCUMENT_ROOT'] . '/jilogit/jilo/db/CommentDB.php';
 $commentDB = new CommentDB();
 if (isset($_GET['article'])) {
@@ -9,6 +10,10 @@ if (isset($_POST['add'])) {
     $articleId = $_POST['articleId'];
     $text = $_POST['text'];
     $activated = $_POST['activated'];
+    if (!isset($activated)) {
+        // TODO some enum for YESNO
+        $activated = 0;
+    }
 
     if ($text && $activated) {
         $commentDB->insertComment($articleId, $text, $activated);
@@ -25,10 +30,14 @@ include $_SERVER['DOCUMENT_ROOT'] . '/jilogit/jilo/layout/Header.php';
 <form action="CommentDetails.php" method="post">
     <input type="hidden" name="articleId" value="<?php echo $articleId; ?>">
     <input type="text" name="text" placeholder="Text">
-    <select type="text" name="activated" placeholder="Activated">
-        <option value="1">Yes</option>
-        <option value="0">No</option>
-    </select>
+    <?php
+    if (isset($_SESSION['ROLEADMIN']) && $_SESSION['ROLEADMIN'] == true) {
+        echo "<select type=\"text\" name=\"activated\" placeholder=\"Activated\">
+        <option value=\"1\">Yes</option>
+        <option value=\"0\">No</option>
+    </select>";
+    };
+    ?>
     <input type="submit" value="Add" name="add">
 </form>
 

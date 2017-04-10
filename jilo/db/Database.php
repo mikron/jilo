@@ -28,6 +28,15 @@ class Database {
         return $result;
     }
 
+    /**
+     * @return mysqli
+     */
+    public function getConnection() {
+        return $this->connection;
+    }
+
+
+
 }
 
 ?>

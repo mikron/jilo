@@ -13,6 +13,7 @@ if (isset($_POST['login'])) {
         if ($row['password'] === $password) {
             $_SESSION['LOGGEDIN'] = true;
             $_SESSION['USERID'] = $row['id'];
+            $_SESSION['ROLEADMIN'] = $userDB->hasAuthority($row['id'], 1)->num_rows > 0;
             echo "Succesfull login";
             header("Location: ../index.php");
         } else {

@@ -43,8 +43,9 @@ class UserDB {
         return Database::getInstance()->query($query);
     }
 
-    public function hasAuthority($userId) {
-        $query = "SELECT * FROM user_authority WHERE id = $userId and authority_id > 0";
+    // TODO add some enum for ROLE types
+    public function hasAuthority($userId, $roleId) {
+        $query = "SELECT * FROM user_authority WHERE user_id = $userId and authorithy_id = $roleId";
         return Database::getInstance()->query($query);
     }
 
