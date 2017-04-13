@@ -1,3 +1,4 @@
+<?php @E_USER_DEPRECATED; ?>
 <?php
 session_start();
 if (isset($_SESSION['LOGGEDIN']) && $_SESSION['LOGGEDIN'] == true) {

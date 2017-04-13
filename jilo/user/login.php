@@ -1,3 +1,4 @@
+<?php @E_USER_DEPRECATED; ?>
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/jilogit/jilo/db/UserDB.php';
 session_start();

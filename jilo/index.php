@@ -1,24 +1,10 @@
 <?php
 session_start();
 
-echo $_SESSION['LOGGEDIN'];
+require_once 'model/model.php';
+require_once 'view/view.php';
+require_once 'controller/controller.php';
 
-if (isset($_SESSION['LOGGEDIN']) && $_SESSION['LOGGEDIN'] == true) {
-    header('Location: article/Article.php');
-} else {
-    header('Location: user/Login.php');
-}
+require_once 'route.php';
+Route::start();
 
-?>
-
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Jilo</title>
-    <base href="http://localhost.com/jilogit/jilo" />
-</head>
-<body>
-<p>Empty body</p>
-</body>
-</html>-->
